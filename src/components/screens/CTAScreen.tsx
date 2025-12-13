@@ -84,7 +84,8 @@ export function CTAScreen({ age, selectedProducts }: CTAScreenProps) {
                 placeholder="050-0000000"
                 className={`
                   w-full px-4 py-3 rounded-xl text-center text-lg
-                  placeholder:text-gray-400
+                  bg-white/20 text-white placeholder:text-white/50
+                  focus:outline-none focus:ring-2 focus:ring-white/50
                   ${phoneError ? 'border-2 border-red-400' : 'border-0'}
                 `}
                 dir="ltr"
