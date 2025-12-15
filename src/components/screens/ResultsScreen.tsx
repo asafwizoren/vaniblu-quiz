@@ -70,7 +70,7 @@ export function ResultsScreen({ products, age, onContinue, onBack }: ResultsScre
         {/* Not approved first - most important */}
         {notApproved.length > 0 && (
           <div className="space-y-3">
-            <h3 className="text-base md:text-lg font-bold text-red-700 flex items-center gap-2">
+            <h3 className="text-base md:text-lg font-bold text-red-700 flex items-center justify-center gap-2">
               <span className="w-2 h-2 bg-red-500 rounded-full"></span>
               לא מתאימים לעור צעיר
             </h3>
@@ -85,7 +85,7 @@ export function ResultsScreen({ products, age, onContinue, onBack }: ResultsScre
         {/* Limited */}
         {limited.length > 0 && (
           <div className="space-y-3">
-            <h3 className="text-base md:text-lg font-bold text-amber-700 flex items-center gap-2">
+            <h3 className="text-base md:text-lg font-bold text-amber-700 flex items-center justify-center gap-2">
               <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
               שימוש מוגבל
             </h3>
@@ -100,7 +100,7 @@ export function ResultsScreen({ products, age, onContinue, onBack }: ResultsScre
         {/* Approved */}
         {approved.length > 0 && (
           <div className="space-y-3">
-            <h3 className="text-base md:text-lg font-bold text-green-700 flex items-center gap-2">
+            <h3 className="text-base md:text-lg font-bold text-green-700 flex items-center justify-center gap-2">
               <span className="w-2 h-2 bg-green-500 rounded-full"></span>
               מתאימים לעור צעיר
             </h3>
@@ -120,7 +120,7 @@ export function ResultsScreen({ products, age, onContinue, onBack }: ResultsScre
             עדכון בחירה
           </Button>
           <Button onClick={onContinue} className="flex-[2]">
-            הצטרפי לקהילה
+            רוצה לדעת עוד?
           </Button>
         </div>
       </div>
