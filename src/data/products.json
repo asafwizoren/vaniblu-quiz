@@ -247,7 +247,7 @@
     "problematicIngredients": "לא זוהו רכיבים פעילים עוצמתיים או בישום",
     "reason": "חומצה היאלורונית ולחותרים עדינים, ללא חומצות או רטינואידים",
     "usageNote": "סרום לחות מבוסס חומצה היאלורונית ומרכיבים עדינים, ללא חומצות עוצמתיות, מתאים בדרך כלל לעור צעיר.",
-    "status": "limited",
+    "status": "approved",
     "statusText": "✅ מאושר לעור צעיר",
     "image": "/products/vichy_serum.jpg"
   },
@@ -258,8 +258,8 @@
     "rinseOrLeave": "leave on",
     "problematicIngredients": "פרופנדיול, פנוקסי.ethanol, Chlorphenesin (חומרים מסייעים/משמרים) – לא ספציפיים לעור צעיר",
     "reason": "סרום לחות עדין; המשמרים בריכוזים רגולטוריים בדרך כלל נסבלים גם בעור צעיר",
-    "usageNote": "סרום לחות עדין עם חומצה היאלורונית ופנתנול, ללא חומצות קילוף או רטינואידים – לרוב מתאים לעור צעיר.",
-    "status": "limited",
+    "usageNote": "סרום לחות עדין עם חומצה היאלורונית ופנתנול, ללא חומצות קילוף או רטינואידים לרוב מתאים לעור צעיר אבל לא לפני שמתחילים שגרה בסיסית.",
+    "status": "approved",
     "statusText": "✅ מאושר לעור צעיר",
     "image": "/products/theordinary_hyaluronic_b5.png"
   },
@@ -316,9 +316,9 @@
     "name": "FRES C ME fre – סרום הבהרה 10% ויטמין C",
     "type": "סרום",
     "rinseOrLeave": "leave on",
-    "problematicIngredients": "Citrus Aurantium Bergamia Peel Oil, Pelargonium Graveolens Oil, Cymbopogon Schoe-thus Oil, Citral, Citronellol, Geraniol, Limonene, Linalool (שמנים אתריים ובישום)",
+    "problematicIngredients": "Citrus Aurantium Bergamia Peel Oil, Pelargonium Graveolens Oil, Cymbopogon Schoenanthus Oil, Citral, Citronellol, Geraniol, Limonene, Linalool (שמנים אתריים ובישום)",
     "reason": "ויטמין c ושמנים אתריים ואלרגנים בניחוח מגבירים סיכון לרגישות וגירוי, במיוחד בעור צעיר",
-    "usageNote": "סרום ויטמין C עם שמנים אתריים ובישום – אינו מומלץ לעור צעיר בשל סיכון מוגבר לרגישות.",
+    "usageNote": "ויטמין c אינו מומלץ לעור צעיר בשל סיכון לגירוי ולהחלשת מחסום העור, בנוסף שמנים אתריים עלולים להגביר את הגירוי לעור וויטמין c מגביר את רגישות העור לשמש.",
     "status": "not_approved",
     "statusText": "❌ לא מתאים לעור צעיר",
     "image": "/products/fre_c_serum.webp"
@@ -598,5 +598,17 @@
     "status": "not_approved",
     "statusText": "❌ לא מתאים",
     "image": "/products/garnier_mask.png"
+  },
+  {
+    "id": "51",
+    "name": "GLOW RECIPE iconix",
+    "type": "קרם לחות",
+    "rinseOrLeave": "Leave-on",
+    "problematicIngredients": "Bakuchiol, ריבוי פפטידים",
+    "reason": "פורמולה טיפולית עם Bakuchiol, פפטידים ורכיבים קומדוגניים, לא מותאמת לעור צעיר ועלולה להעמיס ולסתום נקבוביות",
+    "usageNote": "מתאים לעור בוגר בשל הרכיבים הפעילים למטרות ״אייג׳ינג״",
+    "status": "not_approved",
+    "statusText": "❌ לא מתאים לעור צעיר",
+    "image": "/products/iconox_cream_glowrecap.png"
   }
 ]
