@@ -15,7 +15,7 @@ interface ProductsScreenProps {
   onBack: () => void;
 }
 
-const PRODUCT_TYPES = ['הכל', 'סבון', 'קרם לחות', 'סרום', 'טונר', 'מסיכה'];
+const PRODUCT_TYPES = ['הכל', 'סבון', 'קרם לחות', 'סרום', 'טונר', 'מסיכה', 'טיפול נקודתי'];
 
 export function ProductsScreen({ products, onSubmit, onBack }: ProductsScreenProps) {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());

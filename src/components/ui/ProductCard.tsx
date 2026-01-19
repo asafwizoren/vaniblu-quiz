@@ -17,6 +17,7 @@ const typeColors: Record<string, string> = {
   'סרום': 'bg-[var(--orange)]',
   'טונר': 'bg-[var(--green)]',
   'מסיכה': 'bg-[var(--citrus)]',
+  'טיפול נקודתי': 'bg-purple-500',
 };
 
 const typeTextColors: Record<string, string> = {
@@ -25,6 +26,7 @@ const typeTextColors: Record<string, string> = {
   'סרום': 'text-white',
   'טונר': 'text-white',
   'מסיכה': 'text-[var(--purple)]',
+  'טיפול נקודתי': 'text-white',
 };
 
 export function ProductCard({ product, selected, onToggle }: ProductCardProps) {
