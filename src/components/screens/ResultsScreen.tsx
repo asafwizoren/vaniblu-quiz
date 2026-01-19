@@ -3,6 +3,8 @@
 
 'use client';
 
+import { useEffect } from 'react';
+import { track } from '@vercel/analytics';
 import { Product } from '@/types/product';
 import { ResultCard } from '@/components/ui/ResultCard';
 import { Button } from '@/components/ui/Button';
@@ -19,6 +21,22 @@ export function ResultsScreen({ products, age, onContinue, onBack }: ResultsScre
   const approved = products.filter((p) => p.status === 'approved');
   const notApproved = products.filter((p) => p.status === 'not_approved');
   const limited = products.filter((p) => p.status === 'limited');
+
+  // Track results screen view
+  useEffect(() => {
+    track('results_screen_viewed', {
+      age,
+      totalProducts: products.length,
+      approvedCount: approved.length,
+      notApprovedCount: notApproved.length,
+      limitedCount: limited.length,
+      productIds: products.map(p => p.id).join(','),
+      productNames: products.map(p => p.name).join('|'),
+      approvedIds: approved.map(p => p.id).join(','),
+      notApprovedIds: notApproved.map(p => p.id).join(','),
+      limitedIds: limited.map(p => p.id).join(','),
+    });
+  }, [products, age, approved.length, notApproved.length, limited.length]);
 
   return (
     <div className="min-h-screen bg-[var(--magnolia)] pb-24">
@@ -116,10 +134,29 @@ export function ResultsScreen({ products, age, onContinue, onBack }: ResultsScre
       {/* Sticky bottom buttons */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-bottom">
         <div className="max-w-2xl mx-auto p-3 md:p-4 flex gap-3">
-          <Button onClick={onBack} variant="secondary" className="flex-1">
+          <Button 
+            onClick={() => {
+              track('results_back_clicked', {
+                age,
+                productsCount: products.length,
+              });
+              onBack();
+            }} 
+            variant="secondary" 
+            className="flex-1"
+          >
             עדכון בחירה
           </Button>
-          <Button onClick={onContinue} className="flex-[2]">
+          <Button 
+            onClick={() => {
+              track('results_continue_clicked', {
+                age,
+                productsCount: products.length,
+              });
+              onContinue();
+            }} 
+            className="flex-[2]"
+          >
             רוצה לדעת עוד?
           </Button>
         </div>

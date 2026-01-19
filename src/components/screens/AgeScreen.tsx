@@ -3,7 +3,8 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { track } from '@vercel/analytics';
 import { Button } from '@/components/ui/Button';
 import { Logo } from '@/components/ui/Logo';
 import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
@@ -16,21 +17,42 @@ export function AgeScreen({ onSubmit }: AgeScreenProps) {
   const [age, setAge] = useState<string>('');
   const [showWarning, setShowWarning] = useState<'young' | 'old' | null>(null);
 
+  // Track page view and referrer
+  useEffect(() => {
+    const referrer = typeof window !== 'undefined' ? document.referrer : '';
+    const utmSource = typeof window !== 'undefined' 
+      ? new URLSearchParams(window.location.search).get('utm_source') 
+      : null;
+    
+    track('quiz_started', {
+      referrer: referrer || 'direct',
+      utm_source: utmSource || 'none',
+      timestamp: new Date().toISOString(),
+    });
+  }, []);
+
   const handleSubmit = () => {
     const ageNum = parseInt(age, 10);
     if (isNaN(ageNum) || ageNum < 1 || ageNum > 120) return;
 
     if (ageNum < 12) {
       setShowWarning('young');
+      track('age_warning_shown', { age: ageNum, warningType: 'young' });
     } else if (ageNum > 15) {
       setShowWarning('old');
+      track('age_warning_shown', { age: ageNum, warningType: 'old' });
     } else {
+      track('age_submitted', { age: ageNum, warningType: 'none' });
       onSubmit(ageNum);
     }
   };
 
   const handleContinueAnyway = () => {
     const ageNum = parseInt(age, 10);
+    track('age_continued_despite_warning', { 
+      age: ageNum, 
+      warningType: showWarning || 'unknown' 
+    });
     onSubmit(ageNum);
   };
 

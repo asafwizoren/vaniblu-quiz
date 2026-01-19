@@ -3,7 +3,8 @@
 
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { track } from '@vercel/analytics';
 import { Product } from '@/types/product';
 import { ProductCard } from '@/components/ui/ProductCard';
 import { Button } from '@/components/ui/Button';
@@ -21,6 +22,15 @@ export function ProductsScreen({ products, onSubmit, onBack }: ProductsScreenPro
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [activeFilter, setActiveFilter] = useState('הכל');
 
+  // Track products screen view
+  useEffect(() => {
+    track('products_screen_viewed', {
+      totalProducts: products.length,
+      categoriesCount: [...new Set(products.map(p => p.type))].length,
+      categories: [...new Set(products.map(p => p.type))].join(','),
+    });
+  }, [products]);
+
   const filteredProducts = useMemo(() => {
     if (activeFilter === 'הכל') return products;
     return products.filter((p) => p.type === activeFilter);
@@ -29,17 +39,46 @@ export function ProductsScreen({ products, onSubmit, onBack }: ProductsScreenPro
   const handleToggle = (id: string) => {
     setSelectedIds((prev) => {
       const next = new Set(prev);
-      if (next.has(id)) {
+      const product = products.find(p => p.id === id);
+      const isSelected = next.has(id);
+      
+      if (isSelected) {
         next.delete(id);
+        track('product_deselected', {
+          productId: id,
+          productName: product?.name || 'unknown',
+          productType: product?.type || 'unknown',
+          totalSelected: next.size,
+        });
       } else {
         next.add(id);
+        track('product_selected', {
+          productId: id,
+          productName: product?.name || 'unknown',
+          productType: product?.type || 'unknown',
+          productStatus: product?.status || 'unknown',
+          totalSelected: next.size + 1,
+        });
       }
       return next;
     });
   };
 
   const handleSubmit = () => {
-    onSubmit(Array.from(selectedIds));
+    const selectedProducts = products.filter(p => selectedIds.has(p.id));
+    const selectedProductIds = Array.from(selectedIds);
+    
+    track('products_submitted', {
+      totalSelected: selectedProductIds.length,
+      productIds: selectedProductIds.join(','),
+      productNames: selectedProducts.map(p => p.name).join('|'),
+      productTypes: selectedProducts.map(p => p.type).join(','),
+      approvedCount: selectedProducts.filter(p => p.status === 'approved').length,
+      notApprovedCount: selectedProducts.filter(p => p.status === 'not_approved').length,
+      limitedCount: selectedProducts.filter(p => p.status === 'limited').length,
+    });
+    
+    onSubmit(selectedProductIds);
   };
 
   return (
@@ -68,7 +107,15 @@ export function ProductsScreen({ products, onSubmit, onBack }: ProductsScreenPro
           {PRODUCT_TYPES.map((type) => (
             <button
               key={type}
-              onClick={() => setActiveFilter(type)}
+              onClick={() => {
+                setActiveFilter(type);
+                track('category_filter_used', {
+                  category: type,
+                  productsInCategory: type === 'הכל' 
+                    ? products.length 
+                    : products.filter(p => p.type === type).length,
+                });
+              }}
               className={`
                 px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap
                 transition-all duration-200
@@ -107,7 +154,14 @@ export function ProductsScreen({ products, onSubmit, onBack }: ProductsScreenPro
       {/* Sticky bottom buttons */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 safe-area-bottom">
         <div className="max-w-2xl mx-auto p-3 md:p-4 flex gap-3">
-          <Button onClick={onBack} variant="secondary" className="flex-1">
+          <Button 
+            onClick={() => {
+              track('products_back_clicked', { selectedCount: selectedIds.size });
+              onBack();
+            }} 
+            variant="secondary" 
+            className="flex-1"
+          >
             חזרה
           </Button>
           <Button

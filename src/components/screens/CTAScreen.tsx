@@ -18,18 +18,50 @@ const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/HhsDPVQAWmM7UXShjXpjMY';
 
 export function CTAScreen({ age, selectedProducts }: CTAScreenProps) {
   useEffect(() => {
+    const referrer = typeof window !== 'undefined' ? document.referrer : '';
+    const utmSource = typeof window !== 'undefined' 
+      ? new URLSearchParams(window.location.search).get('utm_source') 
+      : null;
+    const utmMedium = typeof window !== 'undefined' 
+      ? new URLSearchParams(window.location.search).get('utm_medium') 
+      : null;
+    const utmCampaign = typeof window !== 'undefined' 
+      ? new URLSearchParams(window.location.search).get('utm_campaign') 
+      : null;
+
     track('quiz_completed', {
       age,
       productsCount: selectedProducts.length,
+      productIds: selectedProducts.map(p => p.id).join(','),
+      productNames: selectedProducts.map(p => p.name).join('|'),
+      productTypes: selectedProducts.map(p => p.type).join(','),
+      approvedCount: selectedProducts.filter(p => p.status === 'approved').length,
+      notApprovedCount: selectedProducts.filter(p => p.status === 'not_approved').length,
+      limitedCount: selectedProducts.filter(p => p.status === 'limited').length,
+      referrer: referrer || 'direct',
+      utm_source: utmSource || 'none',
+      utm_medium: utmMedium || 'none',
+      utm_campaign: utmCampaign || 'none',
+      timestamp: new Date().toISOString(),
     });
-  }, [age, selectedProducts.length]);
+  }, [age, selectedProducts]);
 
   const handleShare = () => {
+    track('whatsapp_share_clicked', {
+      age,
+      productsCount: selectedProducts.length,
+      shareUrl: typeof window !== 'undefined' ? window.location.href : 'https://vaniblu.co.il/quiz',
+    });
     const url = typeof window !== 'undefined' ? window.location.href : 'https://vaniblu.co.il/quiz';
     window.open(createShareLink(url), '_blank');
   };
 
   const handleJoinCommunity = () => {
+    track('whatsapp_community_clicked', {
+      age,
+      productsCount: selectedProducts.length,
+      communityLink: WHATSAPP_GROUP_LINK,
+    });
     window.open(WHATSAPP_GROUP_LINK, '_blank');
   };
 
