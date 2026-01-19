@@ -610,5 +610,65 @@
     "status": "not_approved",
     "statusText": "❌ לא מתאים לעור צעיר",
     "image": "/products/iconox_cream_glowrecap.png"
+  },
+  {
+    "id": "52",
+    "name": "אקניל קרם לחות",
+    "type": "קרם לחות",
+    "rinseOrLeave": "Leave-on",
+    "problematicIngredients": "Alcohol Denat., Fragrance, Benzophenone-3, Octocrylene, Homosalate, Essential fragrance allergens (Linalool, Limonene וכו')",
+    "reason": "מכיל אלכוהול מייבש, מסנני קרינה כימיים ובישום בעלי פוטנציאל גירוי גבוה",
+    "usageNote": "אינו מתאים לשימוש יומי בעור צעיר בשל עומס רכיבים מגרים",
+    "status": "not_approved",
+    "statusText": "❌ לא מתאים",
+    "image": "/products/acnil_moisturizer.png"
+  },
+  {
+    "id": "53",
+    "name": "אקניל סבון פנים",
+    "type": "סבון",
+    "rinseOrLeave": "Rinse-off",
+    "problematicIngredients": "Fragrance, Triclosan, DMDM Hydantoin",
+    "reason": "מכיל בישום וחומרי שימור אנטיבקטריאליים שאינם מותאמים לעור צעיר",
+    "usageNote": "אינו מתאים לניקוי יומי של עור צעיר",
+    "status": "not_approved",
+    "statusText": "❌ לא מתאים",
+    "image": "/products/acnil_cleanser.png"
+  },
+  {
+    "id": "54",
+    "name": "אקניל Rose",
+    "type": "טיפול נקודתי",
+    "rinseOrLeave": "Leave-on",
+    "problematicIngredients": "Azelaic Acid",
+    "reason": "מכיל חומצה אזלאית – רכיב טיפולי שאינו מיועד לשימוש שגרתי",
+    "usageNote": "מתאים רק לשימוש נקודתי ובהכוונה, לא כחלק משגרה יומית",
+    "status": "limited",
+    "statusText": "⚠️ שימוש מותנה",
+    "image": "/products/acnil_rose.png"
+  },
+  {
+    "id": "55",
+    "name": "CeraVe Facial Cleanser 2",
+    "type": "סבון",
+    "rinseOrLeave": "Rinse-off",
+    "problematicIngredients": "—",
+    "reason": "פורמולת ניקוי עדינה ללא בישום או חומרים פעילים בעייתיים",
+    "usageNote": "מתאים לשימוש יומי כחלק משגרת ניקוי בסיסית",
+    "status": "approved",
+    "statusText": "✅ מתאים",
+    "image": "/products/cerave_cleanser2.png"
+  },
+  {
+    "id": "56",
+    "name": "Water Bank Blue Hyaluronic Exfoliating Toner",
+    "type": "טונר",
+    "rinseOrLeave": "Leave-on",
+    "problematicIngredients": "Fragrance, Mentha Arvensis Extract, Gluconolactone",
+    "reason": "מכיל בישום, תמציות מנטה וחומצה עדינה שאינן מותאמות לעור צעיר",
+    "usageNote": "אינו מתאים לשימוש יומי בעור צעיר",
+    "status": "not_approved",
+    "statusText": "❌ לא מתאים",
+    "image": "/products/water_bank_toner.png"
   }
 ]
